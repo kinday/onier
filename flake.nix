@@ -15,7 +15,7 @@
   };
 
   outputs =
-    {
+    inputs@{
       nixpkgs,
       disko,
       home-manager,
@@ -34,6 +34,7 @@
             # Enable podman & podman systemd generator
             quadlet-nix.nixosModules.quadlet
           ];
+          specialArgs = { inherit inputs; };
         };
       };
     };
