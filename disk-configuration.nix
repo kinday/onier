@@ -23,7 +23,10 @@
               type = "8300";
               size = "100%";
               priority = 2;
-              content.format = "ext4";
+              content = {
+                type = "filesystem";
+                format = "ext4";
+              };
             };
           };
         };
