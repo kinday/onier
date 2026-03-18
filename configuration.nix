@@ -35,11 +35,14 @@
 
   # Enable podman & podman systemd generator
   virtualisation.quadlet.enable = true;
+  users.groups.podman = { };
   users.users.podman = {
-    # required for auto start before user login
-    linger = true;
     # required for rootless container with multiple users
     autoSubUidGidRange = true;
+    group = "podman";
+    isSystemUser = true;
+    # required for auto start before user login
+    linger = true;
   };
   home-manager.users.podman =
     { pkgs, config, ... }:
