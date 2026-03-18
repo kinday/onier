@@ -5,6 +5,9 @@
   pkgs,
   ...
 }:
+let
+  teruelSshKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMBtPiRyLbnQcA77rILMPNebKXDjL6lAHq7ZC3Ael/hs";
+in
 {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
@@ -29,9 +32,7 @@
     pkgs.vim
   ];
 
-  users.users.root.openssh.authorizedKeys.keys = [
-    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMBtPiRyLbnQcA77rILMPNebKXDjL6lAHq7ZC3Ael/hs"
-  ];
+  users.users.root.openssh.authorizedKeys.keys = [ teruelSshKey ];
 
   # Enable podman & podman systemd generator
   virtualisation.quadlet.enable = true;
@@ -43,6 +44,7 @@
     isSystemUser = true;
     # required for auto start before user login
     linger = true;
+    openssh.authorizedKeys.keys = [ teruelSshKey ];
   };
   home-manager.users.podman =
     { pkgs, config, ... }:
