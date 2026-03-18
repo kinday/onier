@@ -60,5 +60,8 @@ if [[ -z "${ONIER_FORCE_RUN}" ]]; then
   esac
 fi
 
-nix run github:nix-community/nixos-anywhere -- --flake "${ONIER_FLAKE}" --target-host "${ONIER_SSH_USERNAME}@${ONIER_SSH_HOSTNAME}"
+nix run github:nix-community/nixos-anywhere -- \
+  --generate-hardware-config nixos-generate-config ./hardware-configuration.nix \
+  --flake "${ONIER_FLAKE}" \
+  --target-host "${ONIER_SSH_USERNAME}@${ONIER_SSH_HOSTNAME}"
 
