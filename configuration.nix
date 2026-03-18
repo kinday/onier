@@ -36,24 +36,25 @@ in
 
   # Enable podman & podman systemd generator
   virtualisation.quadlet.enable = true;
-  users.groups.podman = { };
-  users.users.podman = {
+  users.groups.podbot = { };
+  users.users.podbot = {
     # required for rootless container with multiple users
     autoSubUidGidRange = true;
     createHome = true;
-    group = "podman";
-    home = "/home/podman";
+    group = "podbot";
+    home = "/home/podbot";
     isSystemUser = true;
     # required for auto start before user login
     linger = true;
     openssh.authorizedKeys.keys = [ teruelSshKey ];
     shell = pkgs.bashInteractive;
   };
-  home-manager.users.podman =
+
+  home-manager.users.podbot =
     { pkgs, config, ... }:
     {
       imports = [ inputs.quadlet-nix.homeManagerModules.quadlet ];
-
+      virtualisation.quadlet.enable = true;
       virtualisation.quadlet.containers = {
         echo-server = {
           autoStart = true;
