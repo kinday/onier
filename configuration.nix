@@ -40,7 +40,9 @@ in
   users.users.podman = {
     # required for rootless container with multiple users
     autoSubUidGidRange = true;
+    createHome = true;
     group = "podman";
+    home = "/home/podman";
     isSystemUser = true;
     # required for auto start before user login
     linger = true;
