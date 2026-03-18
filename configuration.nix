@@ -68,6 +68,18 @@ in
             userns = "keep-id";
           };
         };
+        whoami = {
+          autoStart = true;
+          serviceConfig = {
+            RestartSec = "10";
+            Restart = "always";
+          };
+          containerConfig = {
+            image = "docker.io/traefik/whoami:v1.11.0";
+            publishPorts = [ "127.0.0.1:8080:80" ];
+            userns = "keep-id";
+          };
+        };
       };
 
       # This value determines the Home Manager release that your configuration is
