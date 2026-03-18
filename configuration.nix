@@ -47,6 +47,7 @@ in
     # required for auto start before user login
     linger = true;
     openssh.authorizedKeys.keys = [ teruelSshKey ];
+    shell = pkgs.bashInteractive;
   };
   home-manager.users.podman =
     { pkgs, config, ... }:
